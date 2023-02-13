@@ -4,7 +4,16 @@ module.exports = {
 	// get all users
 	getAllUsers: async (req, res) => {
 		try {
-			const users = await User.find({});
+			// find all users and include friendCount for each user
+			const users = await User.aggregate([
+				{
+					$addFields: {
+						friendCount: {
+							$size: '$friends',
+						},
+					},
+				},
+			]);
 			console.log(users);
 			res.status(200).json(users);
 		} catch (err) {
@@ -15,23 +24,14 @@ module.exports = {
 	// get a single user by its _id and populated thought and friend data
 	getSingleUser: async (req, res) => {
 		try {
-			const user = await User.findOne({ _id: req.params.id })
-				.populate({
-					path: 'thoughts',
-					// exlude the document version key (__v)
-					select: '-__v -reactions',
-				})
-				.populate({
-					path: 'friends',
-					select: '-__v -friends -thoughts -friendCount',
-				})
-				.select('-__v');
+			const user = await User.findOne({ _id: req.params.id });
+			!user
+				? res.status(404).json({ message: 'No user found with this id!' })
+				: res.status(200).json({
+						user,
+						friendCount: user.friends.length,
+				  });
 			console.log(user);
-			if (!user) {
-				res.status(404).json({ message: 'No user found with this id!' });
-				return;
-			}
-			res.status(200).json(user);
 		} catch (err) {
 			console.log(err);
 			res.status(400).json(err);
