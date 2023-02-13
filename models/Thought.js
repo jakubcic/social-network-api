@@ -30,7 +30,7 @@ thoughtSchema.set('toJSON', {
 
 thoughtSchema.set('id', false);
 
-thoughtSchema.virtual('reactionCount').get(() => {
+thoughtSchema.virtual('reactionCount').get( function() {
 	return this.reactions.length;
 });
 
