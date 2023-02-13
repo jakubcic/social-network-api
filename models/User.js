@@ -42,9 +42,9 @@ userSchema.set('toJSON', {
 userSchema.set('id', false);
 
 // get total count of friends
-userSchema.virtual('friendCount').get(function() {
-	return this.friends.length;
-});
+// userSchema.virtual('friendCount').get(function() {
+// 	return this.friends.length;
+// });
 
 const User = model('User', userSchema);
 
