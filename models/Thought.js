@@ -1,6 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 const { reactionSchema } = require('./Reaction');
-import { formatTime } from require('../utils/helpers');
+const { formatTime } = require('../utils/helpers.js');
 
 const thoughtSchema = new Schema({
 	thoughtBody: {

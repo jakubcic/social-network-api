@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-import { obfuscate } from '../utils/helpers.js';
+const { obfuscate } = require('../utils/helpers.js');
 
 const userSchema = new Schema({
 	username: {

@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-import { formatTime } from '../utils/helpers.js';
+const { formatTime } = require('../utils/helpers.js');
 
 const reactionSchema = new Schema({
 	reactionId: {
