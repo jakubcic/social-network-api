@@ -29,4 +29,4 @@ reactionSchema.set('toJSON', {
 
 const Reaction = model('Reaction', reactionSchema);
 
-module.exports = { Reaction, reactionSchema }
+module.exports = Reaction;
