@@ -27,6 +27,8 @@ reactionSchema.set('toJSON', {
 	getters: true,
 });
 
+reactionSchema.set('id', false);
+
 const Reaction = model('Reaction', reactionSchema);
 
 module.exports = Reaction;
