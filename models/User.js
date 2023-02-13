@@ -15,7 +15,7 @@ const userSchema = new Schema({
 		unique: true,
 		trim: true,
 		match: [
-			/^[A-Z0-9+_.-]+(?:\.[A-Z0-9+_.-]+)*@[A-Z0-9-]+(?:\.[A-Z0-9-]+)*$/,
+			/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
 			'Must use a valid email address',
 		],
 		// regex to validate emails:
