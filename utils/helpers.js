@@ -11,3 +11,9 @@ function obfuscate(email) {
 	// 'test123@email.com' -> 'te*****@email.com'
 	return email.slice(0, 2) + email.slice(2, separatorIndex).replace(/./g, '*') + email.slice(separatorIndex);
 }
+
+// helper to convert unix timestamp to date string w/ timestamp
+function formatTime(timestamp) {
+	const date = new Date(timestamp);
+	return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
+}
