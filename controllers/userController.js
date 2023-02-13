@@ -13,6 +13,9 @@ module.exports = {
 						},
 					},
 				},
+				{
+					$unset: ['__v'],
+				}
 			]);
 			console.log(users);
 			res.status(200).json(users);
