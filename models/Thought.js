@@ -9,7 +9,7 @@ const thoughtSchema = new Schema({
 		type: String,
 		required: true,
 		minlength: 1,
-		maxlength: 255,
+		maxlength: 800,
 	},
 	createdAt: {
 		type: Date,
@@ -27,6 +27,8 @@ thoughtSchema.set('toJSON', {
 	getters: true,
 	virtuals: true,
 });
+
+thoughtSchema.set('id', false);
 
 thoughtSchema.virtual('reactionCount').get(() => {
 	return this.reactions.length;
