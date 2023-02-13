@@ -1,6 +1,8 @@
 const { Schema, model, Types } = require('mongoose');
-const { reactionSchema } = require('./Reaction');
+const { Reaction } = require('./Reaction');
 const { formatTime } = require('../utils/helpers.js');
+
+reactionSchema = model('Reaction').schema;
 
 const thoughtSchema = new Schema({
 	thoughtBody: {
@@ -18,7 +20,7 @@ const thoughtSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	reactions: [reactionSchema],
+	reactions: [reactionSchema]
 });
 
 thoughtSchema.set('toJSON', {
