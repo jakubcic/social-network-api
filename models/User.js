@@ -18,8 +18,7 @@ const userSchema = new Schema({
 			/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
 			'Must use a valid email address',
 		],
-		// regex to validate emails:
-		// no leading, trailing, or consecutive dots, no spaces, no special characters beyond +_.-
+		// regex to validate emails
 	},
 	thoughts: [
 		{
@@ -39,6 +38,8 @@ userSchema.set('toJSON', {
 	virtuals: true,
 	getters: true,
 });
+
+userSchema.set('id', false);
 
 // get total count of friends
 userSchema.virtual('friendCount').get(function() {
