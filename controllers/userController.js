@@ -27,13 +27,24 @@ module.exports = {
 	// get a single user by its _id and populated thought and friend data
 	getSingleUser: async (req, res) => {
 		try {
-			const user = await User.findOne({ _id: req.params.id });
+			const userData = await User.findOne({ 
+				_id: req.params.id
+			})
+				.populate({
+					path: 'friends',
+					select: '-__v -thoughts -friends',
+				})
+				.populate({
+					path: 'thoughts',
+					select: '-__v',
+				})
+				.select('-__v');
+			// add friendCount to user object
+			const user = userData.toObject();
+			user.friendCount = user.friends.length;
 			!user
 				? res.status(404).json({ message: 'No user found with this id!' })
-				: res.status(200).json({
-						user,
-						friendCount: user.friends.length,
-				  });
+				: res.status(200).json({user});
 			console.log(user);
 		} catch (err) {
 			console.log(err);
