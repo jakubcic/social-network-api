@@ -1,8 +1,8 @@
 const { Schema, model, Types } = require('mongoose');
-const { Reaction } = require('./Reaction');
+const Reaction = require('./Reaction');
 const { formatTime } = require('../utils/helpers.js');
 
-reactionSchema = model('Reaction').schema;
+const reactionSchema = Reaction.schema;
 
 const thoughtSchema = new Schema({
 	thoughtBody: {
@@ -21,10 +21,6 @@ const thoughtSchema = new Schema({
 		required: true,
 	},
 	reactions: [
-		// {
-		// 	type: Schema.Types.ObjectId,
-		// 	ref: 'Reaction',
-		// }
 		reactionSchema
 	]
 });
@@ -35,10 +31,6 @@ thoughtSchema.set('toJSON', {
 });
 
 thoughtSchema.set('id', false);
-
-// thoughtSchema.virtual('reactionCount').get(function() {
-// 	return this.reactions.length;
-// });
 
 const Thought = model('Thought', thoughtSchema);
 
