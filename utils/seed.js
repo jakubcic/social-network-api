@@ -55,26 +55,38 @@ connection.once('open', async () => {
 	}
 	await Promise.all(userThoughtPromises);
 
-	// add random reactions to random thoughts
+	// add between 2 and 7 random reactions to random thoughts
 	const thoughtReactionPromises = [];
 	for (let i = 0; i < 100; i++) {
 		const thought = thoughtsArr[i];
-		const reaction = getRandomItem(reactionsArr);
-		thought.reactions.push(reaction);
+		const reactionCount = Math.floor(Math.random() * 6) + 2;
+		for (let j = 0; j < reactionCount; j++) {
+			// make sure the thought doesn't already have the reaction
+			// and that the same user doesn't react twice
+			let reaction = getRandomItem(reactionsArr);
+			while (thought.reactions.includes(reaction._id) || thought.reactions.includes(reaction.username)) {
+				reaction = getRandomItem(reactionsArr);
+			}
+			thought.reactions.push(reaction);
+		}
 		thoughtReactionPromises.push(thought.save());
 	}
 	await Promise.all(thoughtReactionPromises);
 
-	// add random friends to random users
+	// add between 2 and 10 random friends to random users
 	const userFriendPromises = [];
 	for (let i = 0; i < 20; i++) {
 		const user = usersArr[i];
-		const friend = getRandomItem(usersArr);
-		// make sure user is not friends with themselves
-		if (user.username !== friend.username) {
+		const friendCount = Math.floor(Math.random() * 9) + 2;
+		for (let j = 0; j < friendCount; j++) {
+			// make sure the user doesn't already have the friend
+			let friend = getRandomItem(usersArr);
+			while (user.friends.includes(friend._id)) {
+				friend = getRandomItem(usersArr);
+			}
 			user.friends.push(friend);
-			userFriendPromises.push(user.save());
 		}
+		userFriendPromises.push(user.save());
 	}
 	await Promise.all(userFriendPromises);
 
