@@ -15,7 +15,7 @@ module.exports = {
 				},
 				{
 					$unset: ['__v'],
-				}
+				},
 			]);
 			console.log(users);
 			res.status(200).json(users);
@@ -27,8 +27,8 @@ module.exports = {
 	// get a single user by its _id and populated thought and friend data
 	getSingleUser: async (req, res) => {
 		try {
-			const userData = await User.findOne({ 
-				_id: req.params.id
+			const userData = await User.findOne({
+				_id: req.params.id,
 			})
 				.populate({
 					path: 'friends',
@@ -40,11 +40,13 @@ module.exports = {
 				})
 				.select('-__v');
 			// add friendCount to user object
+			if (!userData) {
+				res.status(404).json({ message: 'No user found with this id!' });
+				return;
+			}
 			const user = userData.toObject();
 			user.friendCount = user.friends.length;
-			!user
-				? res.status(404).json({ message: 'No user found with this id!' })
-				: res.status(200).json({user});
+			res.status(200).json({ user });
 			console.log(user);
 		} catch (err) {
 			console.log(err);
