@@ -15,10 +15,10 @@ const userSchema = new Schema({
 		unique: true,
 		trim: true,
 		match: [
+			// regex to validate emails
 			/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
 			'Must use a valid email address',
 		],
-		// regex to validate emails
 	},
 	thoughts: [
 		{
@@ -35,16 +35,10 @@ const userSchema = new Schema({
 });
 
 userSchema.set('toJSON', {
-	virtuals: true,
 	getters: true,
 });
 
 userSchema.set('id', false);
-
-// get total count of friends
-// userSchema.virtual('friendCount').get(function() {
-// 	return this.friends.length;
-// });
 
 const User = model('User', userSchema);
 
