@@ -1,4 +1,4 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const { obfuscate } = require('../utils/helpers.js');
 
 const userSchema = new Schema({

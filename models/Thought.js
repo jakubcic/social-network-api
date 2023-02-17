@@ -1,4 +1,4 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const Reaction = require('./Reaction');
 const { formatTime } = require('../utils/helpers.js');
 
