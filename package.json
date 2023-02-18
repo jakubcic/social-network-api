@@ -4,9 +4,9 @@
 	"description": "API for a social media site backend",
 	"main": "index.js",
 	"scripts": {
-		"start": "node server.js",
+		"start": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "nodemon server.js",
+		"watch": "nodemon index.js",
 		"seed": "node utils/seed.js"
 	},
 	"repository": {
