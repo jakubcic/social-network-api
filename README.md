@@ -71,6 +71,10 @@ Here's a video demo showcasing all the possible API calls:
 
 
 
+https://user-images.githubusercontent.com/39972418/219845113-735991a4-d7e8-4a92-9a1f-60a9aefa8292.mp4
+
+
+
 ## Credits
 ### Dependencies
 This API is built with the following technologies:
