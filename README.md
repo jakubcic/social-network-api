@@ -51,7 +51,7 @@ After you ensure that you have **node.js** and **MongoDB** installed you can sim
 git clone git@github.com:jakubcic/social-network-api.git
 ```
 
-Then in your terminal navigate to the root of the **ocial-network-api** directory and run:
+Then in your terminal navigate to the root of the **social-network-api** directory and run:
 ```
 npm install
 ```
